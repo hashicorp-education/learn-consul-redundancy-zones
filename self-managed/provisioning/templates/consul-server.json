@@ -1,0 +1,39 @@
+{
+    "acl": {
+        "enabled": true,
+        "down_policy": "async-cache",
+        "default_policy": "deny",
+        "tokens": {
+            "agent": "${token}",
+            "default": "${token}",
+            "initial_management": "${token}"
+        }
+    },
+    "datacenter": "${datacenter}",
+    "retry_join": ["${retry_join}"],
+    "node_meta": {
+        "zone": "zone${count}"
+    },
+    "autopilot": {
+        "redundancy_zone_tag": "zone"
+    },
+    "license_path": "/etc/consul.d/consul.hclic",
+    "encrypt": "",
+    "encrypt_verify_incoming": false,
+    "encrypt_verify_outgoing": false,
+    "server": true,
+    "bootstrap_expect": 3,
+    "log_level": "INFO",
+    "ui_config": {
+        "enabled": true
+    },
+    "tls": {
+        "defaults": {
+            "ca_file": "/etc/consul.d/ca.pem",
+            "verify_outgoing": false
+        }
+    },
+    "ports": {
+        "grpc": 8502
+    }
+}

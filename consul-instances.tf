@@ -132,7 +132,7 @@ resource "aws_instance" "consul-server-group1" {
 
   user_data = templatefile("${path.module}/instance-scripts/user_data.sh", {
     setup = base64gzip(templatefile("${path.module}/instance-scripts/setup.sh", {
-      hostname = "consul-group1-${count.index}",
+      hostname = "consul-group1-server${count.index}",
       consul_license = base64encode(file("${path.module}/consul.hclic")),
       consul_ca = base64encode(tls_self_signed_cert.consul_ca_cert.cert_pem),
       consul_config = base64encode(templatefile("${path.module}/provisioning/templates/consul-server.json", {
@@ -148,7 +148,7 @@ resource "aws_instance" "consul-server-group1" {
   })
 
   tags = {
-    Name = "consul-group1-${count.index}"
+    Name = "consul-group1-server${count.index}"
     learn-consul-redundancy-zones = "join"
   }
 }
@@ -165,7 +165,7 @@ resource "aws_instance" "consul-server-group2" {
 
   user_data = templatefile("${path.module}/instance-scripts/user_data.sh", {
     setup = base64gzip(templatefile("${path.module}/instance-scripts/setup.sh", {
-      hostname = "consul-group2-${count.index}",
+      hostname = "consul-group2-server${count.index}",
       consul_license = base64encode(file("${path.module}/consul.hclic")),
       consul_ca = base64encode(tls_self_signed_cert.consul_ca_cert.cert_pem),
       consul_config = base64encode(templatefile("${path.module}/provisioning/templates/consul-server.json", {
@@ -181,7 +181,7 @@ resource "aws_instance" "consul-server-group2" {
   })
 
   tags = {
-    Name = "cts-${count.index}"
+    Name = "consul-group2-server${count.index}"
     learn-consul-redundancy-zones = "join"
   }
 }

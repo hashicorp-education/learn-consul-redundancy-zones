@@ -148,7 +148,7 @@ resource "aws_instance" "consul-server-group1" {
   })
 
   tags = {
-    Name = "cts-${count.index}"
+    Name = "consul-group1-${count.index}"
     learn-consul-redundancy-zones = "join"
   }
 }

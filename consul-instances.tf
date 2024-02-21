@@ -184,4 +184,6 @@ resource "aws_instance" "consul-server-group2" {
     Name = "consul-group2-server${count.index}"
     learn-consul-redundancy-zones = "join"
   }
+
+  depends_on = [ aws_instance.consul-server-group1 ]
 }
